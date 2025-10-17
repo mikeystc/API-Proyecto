@@ -1,0 +1,57 @@
+ENLACE AL REPOSITORIO GIT - API TIENDA WEB
+==========================================
+
+URL DEL REPOSITORIO: https://github.com/tu_usuario/tienda-web-api-aa5-ev04
+
+INSTRUCCIONES PARA CLONAR Y EJECUTAR:
+-------------------------------------
+1. Clonar el repositorio:
+   git clone https://github.com/tu_usuario/tienda-web-api-aa5-ev04.git
+
+2. Navegar al directorio:
+   cd tienda-web-api-aa5-ev04
+
+3. Crear entorno virtual:
+   python -m venv venv
+
+4. Activar entorno virtual:
+   # Windows:
+   venv\Scripts\activate
+   # Linux/Mac:
+   source venv/bin/activate
+
+5. Instalar dependencias:
+   pip install -r requirements.txt
+
+6. Ejecutar la API:
+   python app.py
+
+HISTORIAL DE COMMITS PRINCIPALES:
+--------------------------------
+- commit 1: "estructura inicial del proyecto"
+- commit 2: "implementación endpoints de productos"
+- commit 3: "sistema de pedidos con validación de stock"
+- commit 4: "endpoints de usuarios y autenticación"
+- commit 5: "documentación completa y ejemplos"
+- commit 6: "pruebas con postman y documentación de testing"
+
+RAMAS DEL REPOSITORIO:
+---------------------
+- main: Código estable y probado
+- development: Desarrollo de nuevas características
+- testing: Pruebas y validaciones
+
+ARCHIVOS PRINCIPALES:
+--------------------
+- app.py: Código principal de la API
+- requirements.txt: Dependencias del proyecto
+- endpoints.txt: Documentación de endpoints
+- testing_document.py: Generador de documentación de pruebas
+- data/: Directorio con base de datos JSON
+
+NOTAS ADICIONALES:
+-----------------
+- La API incluye datos de ejemplo que se cargan automáticamente
+- No se requiere configuración adicional para funcionar
+- Ideal para pruebas de desarrollo y aprendizaje
+- Fácil de extender y modificar
