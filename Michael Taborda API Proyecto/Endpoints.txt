@@ -1,0 +1,157 @@
+
+## 🔗 **4. Documentación de Endpoints (`endpoints.txt`)**
+
+```text
+ENDPOINTS DE LA API DE TIENDA WEB
+==================================
+
+BASE URL: http://localhost:5000
+
+1. ENDPOINT DE BIENVENIDA
+   ----------------------
+   Método: GET
+   URL: /
+   Descripción: Información general de la API y endpoints disponibles
+   Response: JSON con información de la API
+
+2. GESTIÓN DE PRODUCTOS
+   --------------------
+
+   a) LISTAR PRODUCTOS
+      Método: GET
+      URL: /api/productos
+      Query Parameters Opcionales:
+        - categoria: Filtrar por categoría
+        - min_precio: Precio mínimo
+        - max_precio: Precio máximo
+      Response: Lista de productos con filtros aplicados
+
+   b) OBTENER PRODUCTO POR ID
+      Método: GET
+      URL: /api/productos/<int:id>
+      Response: Detalles del producto específico
+
+   c) CREAR PRODUCTO
+      Método: POST
+      URL: /api/productos
+      Body (JSON):
+      {
+        "nombre": "string (requerido)",
+        "precio": "number (requerido)",
+        "categoria": "string (requerido)",
+        "stock": "integer (requerido)",
+        "descripcion": "string (opcional)",
+        "imagen": "string (opcional)",
+        "rating": "number (opcional)"
+      }
+      Response: Producto creado
+
+   d) ACTUALIZAR PRODUCTO
+      Método: PUT
+      URL: /api/productos/<int:id>
+      Body (JSON): Campos a actualizar
+      Response: Producto actualizado
+
+   e) ELIMINAR PRODUCTO
+      Método: DELETE
+      URL: /api/productos/<int:id>
+      Response: Mensaje de confirmación
+
+3. GESTIÓN DE PEDIDOS
+   ------------------
+
+   a) LISTAR PEDIDOS
+      Método: GET
+      URL: /api/pedidos
+      Response: Lista de todos los pedidos
+
+   b) OBTENER PEDIDO POR ID
+      Método: GET
+      URL: /api/pedidos/<int:id>
+      Response: Detalles del pedido específico
+
+   c) CREAR PEDIDO
+      Método: POST
+      URL: /api/pedidos
+      Body (JSON):
+      {
+        "cliente": {
+          "nombre": "string",
+          "email": "string"
+        },
+        "items": [
+          {
+            "producto_id": "integer (requerido)",
+            "cantidad": "integer (requerido)"
+          }
+        ],
+        "direccion_entrega": {
+          "calle": "string",
+          "ciudad": "string",
+          "codigo_postal": "string"
+        }
+      }
+      Response: Pedido creado con total calculado
+
+4. GESTIÓN DE USUARIOS
+   -------------------
+
+   a) REGISTRO DE USUARIO
+      Método: POST
+      URL: /api/usuarios/registro
+      Body (JSON):
+      {
+        "email": "string (requerido)",
+        "password": "string (requerido)",
+        "nombre": "string (requerido)",
+        "direccion": "object (opcional)"
+      }
+      Response: Usuario registrado
+
+   b) LOGIN DE USUARIO
+      Método: POST
+      URL: /api/usuarios/login
+      Body (JSON):
+      {
+        "email": "string (requerido)",
+        "password": "string (requerido)"
+      }
+      Response: Datos del usuario y token de sesión (simulado)
+
+CÓDIGOS DE RESPUESTA HTTP:
+-------------------------
+- 200: OK - Operación exitosa
+- 201: Created - Recurso creado exitosamente
+- 400: Bad Request - Datos inválidos
+- 401: Unauthorized - Autenticación requerida
+- 404: Not Found - Recurso no encontrado
+- 409: Conflict - Recurso ya existe
+- 500: Internal Server Error - Error del servidor
+
+EJEMPLOS DE USO CON CURL:
+=========================
+
+# Obtener todos los productos
+curl -X GET http://localhost:5000/api/productos
+
+# Obtener productos de categoría "Tecnología"
+curl -X GET "http://localhost:5000/api/productos?categoria=Tecnología"
+
+# Crear un nuevo producto
+curl -X POST http://localhost:5000/api/productos \
+  -H "Content-Type: application/json" \
+  -d '{"nombre":"Tablet","precio":299.99,"categoria":"Tecnología","stock":20}'
+
+# Crear un pedido
+curl -X POST http://localhost:5000/api/pedidos \
+  -H "Content-Type: application/json" \
+  -d '{
+    "cliente": {"nombre":"Ana Lopez","email":"ana@example.com"},
+    "items": [{"producto_id":1,"cantidad":1}],
+    "direccion_entrega": {"calle":"Calle 123","ciudad":"Bogotá"}
+  }'
+
+# Registrar usuario
+curl -X POST http://localhost:5000/api/usuarios/registro \
+  -H "Content-Type: application/json" \
+  -d '{"email":"usuario@example.com","password":"clave123","nombre":"Usuario Ejemplo"}'
